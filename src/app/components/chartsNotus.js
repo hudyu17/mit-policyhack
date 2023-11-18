@@ -117,7 +117,7 @@ export default function CardLineChart({ baselineData, interventionData }) {
         <div className="flex-auto">
           {/* Chart */}
           <div className="relative">
-            <canvas id="line-chart" className="h-[30rem]"></canvas>
+            <canvas id="line-chart" className="h-[16rem] md:h-[30rem]"></canvas>
           </div>
         </div>
       </div>
