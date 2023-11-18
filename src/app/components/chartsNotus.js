@@ -113,7 +113,7 @@ export default function CardLineChart({ baselineData, interventionData }) {
   }, []);
   return (
     <>
-      <div className="relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded bg-blueGray-700">
+      <div className="relative flex flex-col min-w-0 break-words w-full shadow-lg rounded bg-blueGray-700">
         <div className="flex-auto">
           {/* Chart */}
           <div className="relative">
