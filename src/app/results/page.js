@@ -15,7 +15,7 @@ export default function Page() {
     const interventions = searchParams.get('interventions').split(',')
 
     const interventionItems = interventions.map((intervention) =>
-        <div className='flex flex-col gap-4 text-center bg-gray-800 p-6 rounded-lg justify-center'>
+        <div key={intervention} className='flex flex-col gap-4 text-center bg-gray-800 p-6 rounded-lg justify-center'>
             <p className='text-3xl'>{interventionMap[intervention].icon}</p>
             <p className='text-xl font-medium'>{interventionMap[intervention].title}</p>
             <p className='text-gray-400'>{interventionMap[intervention].desc}</p>
