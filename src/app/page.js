@@ -33,10 +33,6 @@ export default function Example() {
     // firstName = formData.get('first-name')
     // redirect('/results')
     console.log(res)
-    // router.push({
-    //   pathname: '/results',
-    //   query: { result: res }
-    // });
 
     const interventions = 'item1,item2,item3'
 

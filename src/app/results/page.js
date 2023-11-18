@@ -4,7 +4,7 @@
  
 import { useSearchParams } from 'next/navigation'
 import { ExampleChart } from '../components/charts'
-
+import CardLineChart from '../components/chartsNotus'
 
 export default function Page() {
     const searchParams = useSearchParams()
@@ -25,6 +25,9 @@ export default function Page() {
     );
 
     const evictions = searchParams.get('evictions')
+
+    const baselineData = [65, 74, 66, 64, 56, 67, 73, 80, 85, 88]
+    const interventionData = [63, 72, 69, 65, 56, 60, 65, 62, 58, 64]
 
     return (
         <div className="relative isolate bg-gray-900 h-full min-h-screen text-white">
@@ -72,12 +75,12 @@ export default function Page() {
                 </h2>
               </div>
               <div className="mt-4 flex md:ml-4 md:mt-0">
-                <button
+                {/* <button
                   type="button"
                   className="inline-flex items-center rounded-md bg-white/10 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-white/20"
                 >
                   Edit
-                </button>
+                </button> */}
                 <button
                   type="button"
                   className="ml-3 inline-flex items-center rounded-md bg-indigo-500 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500"
@@ -89,12 +92,22 @@ export default function Page() {
             <div className='grid sm:grid-cols-2 lg:grid-cols-4 gap-8'>
                 {interventionItems}
             </div>
-            <p>
-                Evictions: {evictions}
-            </p>
+            <div>
+              <h2 className='text-xl'>
+                  <span className='font-semibold text-yellow-300'>{evictions}</span> evictions could have been prevented
+              </h2>
+              <p className='text-gray-400'> if the policies above were implemented in 2018.</p>
+            </div>
 
-            <ExampleChart/>
+            {/* <ExampleChart/> */}
+          <CardLineChart baselineData={baselineData} interventionData={interventionData} />
 
+          <div>
+              <h2 className='text-xl'>
+                  <span className='font-semibold text-yellow-300'>${(483 * evictions).toLocaleString()}</span> saved for your city
+              </h2>
+              <p className='text-gray-400'>based on a budgeted ${evictions} spent on interventions.</p>
+            </div>
 
         </div>
     </div>

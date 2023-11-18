@@ -26,7 +26,7 @@ export const calculate = (formData) => {
     const consent = formData.get('consent')
     const test = formData.get('no-exist')
 
-    console.log('test', test) // null
+    // console.log('test', test) // null
 
     let evictions;
     if (budget > 300) {
