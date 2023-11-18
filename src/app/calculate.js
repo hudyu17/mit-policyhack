@@ -1,4 +1,7 @@
-export const calculate = (formData) => {
+'use server'
+import { redirect } from "next/navigation";
+
+export async function calculate(formData) {
     console.log(formData)
 
     // FormData {
@@ -35,5 +38,9 @@ export const calculate = (formData) => {
         evictions = 1000 + lookupState[state]
     }
 
-    return evictions
+    const interventions = 'item1,item2,item3'
+
+    const queryString  = `interventions=${interventions}&evictions=${evictions}`
+    
+    redirect(`/results?${queryString}`)
 }

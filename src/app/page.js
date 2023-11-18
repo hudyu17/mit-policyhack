@@ -12,35 +12,36 @@
   }
   ```
 */
+'use client'
+
 import { BuildingOffice2Icon, EnvelopeIcon, PhoneIcon } from '@heroicons/react/24/outline'
 import Link from 'next/link'
-// import { useState } from 'react'
+import { useState } from 'react'
 import { calculate } from './calculate.js'
 import { useRouter } from 'next/router.js'
 import { redirect } from "next/navigation";
-
+import Loading from './loading.js';
 
 export default function Example() {
   // const [name, setName] = useState('')
   // const [email, setEmail] = useState('')
-
+  const [loading, setLoading] = useState(false)
+ 
   // const router = useRouter();
 
   async function handleSubmit(formData) {
-    'use server'
-    
-    const res = calculate(formData)
-    // firstName = formData.get('first-name')
-    // redirect('/results')
-    console.log(res)
+    setLoading(true)
+    const queryString = calculate(formData)
+    console.log(queryString)
 
-    const interventions = 'item1,item2,item3'
-
-    redirect(`/results?interventions=${interventions}&evictions=${res}`)
+    redirect(`/results?${queryString}`)
   }
 
   return (
     <div className="relative isolate bg-gray-900 h-full min-h-screen">
+      {loading &&
+        <Loading/>
+      }
       <div className="mx-auto grid max-w-7xl grid-cols-1 lg:grid-cols-2">
         <div className="relative px-6 pb-20 pt-24 sm:pt-32 lg:static lg:px-8 lg:py-48">
           <div className="mx-auto max-w-xl lg:mx-0 lg:max-w-lg">
@@ -111,7 +112,7 @@ export default function Example() {
             </dl>
           </div>
         </div>
-        <form action={handleSubmit} method="POST" className="px-6 pb-24 pt-20 sm:pb-32 lg:px-8 lg:py-48">
+        <form action={calculate} method="POST" className="px-6 pb-24 pt-20 sm:pb-32 lg:px-8 lg:py-48">
           <div className="mx-auto max-w-xl lg:mr-0 lg:max-w-lg">
             <div className="grid grid-cols-1 gap-x-8 gap-y-10 sm:grid-cols-2">
 
@@ -236,6 +237,7 @@ export default function Example() {
               <button
                 type="submit"
                 className="rounded-md bg-indigo-500 px-3.5 py-2.5 text-center text-sm font-semibold text-white shadow-sm hover:bg-indigo-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500"
+                onClick={() => setLoading(true)}
               >
                 Identify Interventions
               </button>
