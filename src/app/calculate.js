@@ -21,34 +21,44 @@ export async function calculate(formData) {
     const lookupState = {
         'New York': 3,
         'Colorado': 4,
+        'Ohio': 5,
+        'Florida': 2
     }
 
     const budget = formData.get('budget')
     const state = formData.get('state')
     const population = formData.get('population')
     const consent = formData.get('consent')
-    const test = formData.get('no-exist')
 
-    // console.log('test', test) // null
+    const counsel = formData.get('counsel')
+    const moratorium = formData.get('moratorium')
+    const cure = formData.get('cure')
 
-    let evictions;
-    if (budget > 300) {
-        evictions = 1 + lookupState[state]
-    } else {
-        evictions = 1000 + lookupState[state]
+    var interventions = ''
+
+    if (!counsel) {
+        interventions += 'counsel,'
+    } 
+
+    if (!moratorium) {
+        interventions += 'moratorium,'
     }
 
-    const interventions = 'item1,item2,item3,item2'
+    if (!cure) {
+        interventions += 'cure,'
+    }
 
-    const baselineArray = [65, 74, 66, 64, 56, 67, 73, 80, 85, 100] // join into one string
+    const evictions = lookupState[state] * budget
+
+    // const interventions = 'item1,item2,item3'
+
+    const baselineArray = [65, 74, 66, 64, 56, 67, 73, 80, 85, 92] // join into one string
     const baselineData = baselineArray.join()
 
     const interventionArray = [63, 72, 69, 65, 56, 60, 65, 62, 58, 64]
     const interventionData = interventionArray.join()
 
-    const saved = 400
-
-    const queryString  = `interventions=${interventions}&evictions=${evictions}&baselineData=${baselineData}&interventionData=${interventionData}&saved=${saved}`
+    const queryString  = `interventions=${interventions}&evictions=${evictions}&baselineData=${baselineData}&interventionData=${interventionData}`
     
     redirect(`/results?${queryString}`)
 }

@@ -153,6 +153,7 @@ export default function Example() {
                     name="state"
                     className="block w-full rounded-md border-0 bg-white/5 py-2 text-white shadow-sm ring-1 ring-inset ring-white/10 focus:ring-2 focus:ring-inset focus:ring-indigo-500 sm:text-sm sm:leading-6 [&_*]:text-black"
                   >
+                    <option></option>
                     <option>New York</option>
                     <option>Florida</option>
                     <option>Ohio</option>
@@ -187,8 +188,10 @@ export default function Example() {
                     name="state"
                     className="block w-full rounded-md border-0 bg-white/5 py-2 text-white shadow-sm ring-1 ring-inset ring-white/10 focus:ring-2 focus:ring-inset focus:ring-indigo-500 sm:text-sm sm:leading-6 [&_*]:text-black"
                   >
+                    <option></option>
                     <option>White</option>
                     <option>Black</option>
+                    <option>Hispanic</option>
                     <option>Native American / Alaska Native</option>
                     <option>Asian</option>
                     <option>Native Hawaiian / Other Pacific Islander</option>
@@ -205,14 +208,14 @@ export default function Example() {
                 <div className="relative flex gap-x-3">
                   <div className="flex h-6 items-center">
                     <input
-                      id="consent"
-                      name="consent"
+                      id="counsel"
+                      name="counsel"
                       type="checkbox"
                       className="h-4 w-4 rounded border-white/10 bg-white/5 text-indigo-600 focus:ring-indigo-600 focus:ring-offset-gray-900"
                     />
                   </div>
                   <div className="text-sm leading-6">
-                    <label htmlFor="consent" className="font-medium text-white">
+                    <label htmlFor="counsel" className="font-medium text-white">
                       Right to Counsel
                     </label>
                     <p className="text-gray-400">All tenants facing eviction are entitled to free legal representation.</p>
@@ -231,23 +234,23 @@ export default function Example() {
                     <label htmlFor="moratorium" className="font-medium text-white">
                       Eviction Moratorium
                     </label>
-                    <p className="text-gray-400">Evictions are paused indefinitely.</p>
+                    <p className="text-gray-400">Evictions are paused for a pre-determined period.</p>
                   </div>
                 </div>
                 <div className="relative flex gap-x-3">
                   <div className="flex h-6 items-center">
                     <input
-                      id="offers"
-                      name="offers"
+                      id="cure"
+                      name="cure"
                       type="checkbox"
                       className="h-4 w-4 rounded border-white/10 bg-white/5 text-indigo-600 focus:ring-indigo-600 focus:ring-offset-gray-900"
                     />
                   </div>
                   <div className="text-sm leading-6">
-                    <label htmlFor="offers" className="font-medium text-white">
-                      Offers
+                    <label htmlFor="cure" className="font-medium text-white">
+                      Right to Cure
                     </label>
-                    <p className="text-gray-400">Get notified when a candidate accepts or rejects an offer.</p>
+                    <p className="text-gray-400">Tenants are given opportunity to pay outstanding arrears.</p>
                   </div>
                 </div>
               </div>

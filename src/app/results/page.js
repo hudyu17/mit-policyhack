@@ -13,12 +13,16 @@ function numberWithCommas(x) {
 export default function Page() {
     const searchParams = useSearchParams()
     const interventionMap = {
-        'item1': {'icon': '💵', 'title': 'Right to Counsel', 'desc': 'All tenants are entitled to free legal representation.'},
-        'item2': {'icon': '🏛️', 'title': 'Eviction Moratorium', 'desc': 'Evictions are paused indefinitely, until the end of time.'},
-        'item3': {'icon': '🚰', 'title': 'Random Solution', 'desc': 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.'}
+        'counsel': {'icon': '🧑‍⚖️', 'title': 'Right to Counsel', 'desc': 'All tenants are entitled to free legal representation.'},
+        'moratorium': {'icon': '🏛️', 'title': 'Eviction Moratorium', 'desc': 'Evictions are paused for a pre-determined period of time.'},
+        'cure': {'icon': '💵', 'title': 'Right to Cure', 'desc': 'Tenants are given opportunity to pay outstanding arrears.'}
     }
 
-    const interventions = searchParams.get('interventions').split(',')
+    var interventions = searchParams.get('interventions').split(',')
+
+    if (interventions.length > 0) {
+      interventions = interventions.slice(0, -1) 
+    }
 
     const interventionItems = interventions.map((intervention) =>
         <div key={intervention} className='flex flex-col gap-4 text-center bg-gray-800 p-6 rounded-lg justify-center'>
