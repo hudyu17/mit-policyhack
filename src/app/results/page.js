@@ -6,6 +6,10 @@ import { useSearchParams } from 'next/navigation'
 import { ExampleChart } from '../components/charts'
 import CardLineChart from '../components/chartsNotus'
 
+function numberWithCommas(x) {
+  return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+}
+
 export default function Page() {
     const searchParams = useSearchParams()
     const interventionMap = {
@@ -26,11 +30,21 @@ export default function Page() {
 
     const evictions = searchParams.get('evictions')
 
-    const baselineData = [65, 74, 66, 64, 56, 67, 73, 80, 85, 88]
-    const interventionData = [63, 72, 69, 65, 56, 60, 65, 62, 58, 64]
+    const multiplierLow = 10500
+    const multiplierHigh = 29100
+
+    // const baselineData = [65, 74, 66, 64, 56, 67, 73, 80, 85, 88]
+    // const interventionData = [63, 72, 69, 65, 56, 60, 65, 62, 58, 64]
+
+    const baselineData = searchParams.get('baselineData').split(',')
+    const interventionData = searchParams.get('interventionData').split(',')
+
+    const saved = searchParams.get('saved')
+
+    console.log(baselineData)
 
     return (
-        <div className="relative isolate bg-gray-900 h-full min-h-screen text-white">
+        <div className="relative isolate bg-gray-900 h-full min-h-screen text-white w-screen overflow-clip">
                <svg
         className="absolute inset-0 -z-10 h-full w-full stroke-white/10 [mask-image:radial-gradient(100%_100%_at_top_right,white,transparent)]"
         aria-hidden="true"
@@ -89,12 +103,30 @@ export default function Page() {
           <CardLineChart baselineData={baselineData} interventionData={interventionData} />
 
           <div>
-              <h2 className='text-xl'>
-                  <span className='font-semibold text-yellow-300'>${(483 * evictions).toLocaleString()}</span> saved for your city
-              </h2>
-              <p className='text-gray-400'>based on a budgeted ${evictions} spent on interventions.</p>
-            </div>
+            <h2 className='text-xl'>
+                <span className='font-semibold text-yellow-300'>${(evictions * (multiplierHigh - multiplierLow)).toLocaleString()}</span> saved for your city
+            </h2>
+            <p className='text-gray-400'>based on a budgeted ${evictions} spent on interventions.</p>
+          </div>
 
+          <div className='w-full -mt-6'>
+            <div className='flex items-center'>
+            <div className='flex flex-col gap-2 items-center border border-gray-400 rounded-md p-4'>
+                <p className='text-gray-300 font-light'>Conservative outcome</p>
+                <p className='font-semibold text-orange-500'>${numberWithCommas(evictions * multiplierLow)}</p>
+              </div>
+              <hr className='w-64'/>
+              <div className='flex flex-col gap-2 items-center border border-gray-400 rounded-md p-4'>
+                <p className=''>Expected outcome</p>
+                <p className='font-semibold text-yellow-300'>${numberWithCommas(evictions * (multiplierHigh - multiplierLow))}</p>
+              </div>
+              <hr className='w-64'/>
+              <div className='flex flex-col gap-2 items-center border border-gray-400 rounded-md p-4'>
+                <p className='text-gray-300 font-light'>Best case scenario</p>
+                <p className='font-semibold text-green-600'>${numberWithCommas(evictions * multiplierHigh)}</p>
+              </div>
+            </div>
+          </div>          
         </div>
     </div>
     )

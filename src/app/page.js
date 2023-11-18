@@ -43,7 +43,7 @@ export default function Example() {
         <Loading/>
       }
       <div className="mx-auto grid max-w-7xl grid-cols-1 lg:grid-cols-2">
-        <div className="relative px-6 pb-20 pt-24 sm:pt-32 lg:static lg:px-16 lg:py-48">
+        <div className="relative px-6 pb-20 pt-24 pb-32 lg:static lg:px-16 my-auto">
           <div className="mx-auto max-w-xl lg:mx-0 lg:max-w-lg">
             <div className="absolute inset-y-0 left-0 -z-10 w-full overflow-hidden ring-1 ring-white/5 lg:w-1/2">
               <svg
@@ -80,8 +80,9 @@ export default function Example() {
                 />
               </div>
             </div>
-            <h1 className="mt-10 font-bold tracking-tight text-white text-6xl">
-              🏠 Eviction <br/>
+            <h1 className="font-bold tracking-tight text-white text-6xl">
+              <p className='mb-4'>🏠</p>
+              Eviction <br/>
               Prevention <br/>
               Calculator
             </h1>
@@ -114,7 +115,7 @@ export default function Example() {
             </dl>
           </div>
         </div>
-        <form action={calculate} method="POST" className="px-6 pb-24 pt-20 sm:pb-32 lg:px-16 lg:py-48">
+        <form action={calculate} method="POST" className="px-6 pt-24 pb-20 my-auto lg:px-16">
           <div className="mx-auto max-w-xl lg:mr-0 lg:max-w-lg">
             <div className="grid grid-cols-1 gap-x-8 gap-y-10 sm:grid-cols-2">
 
@@ -160,9 +161,9 @@ export default function Example() {
                 </div>
               </div>
 
-              <div>
+              <div className='col-start-1'>
                 <label htmlFor="population" className="block text-sm font-semibold leading-6 text-white">
-                  Population <span className='font-normal text-gray-400'>(of your City)</span>
+                  Population
                 </label>
                 <div className="mt-2.5">
                   <input
@@ -175,6 +176,25 @@ export default function Example() {
               </div>
 
               {/* TODO: demographic inputs */}
+
+              <div className="">
+                <label htmlFor="state" className="block text-sm font-medium leading-6 text-white">
+                  Predominant racial category
+                </label>
+                <div className="mt-2.5">
+                  <select
+                    id="state"
+                    name="state"
+                    className="block w-full rounded-md border-0 bg-white/5 py-2 text-white shadow-sm ring-1 ring-inset ring-white/10 focus:ring-2 focus:ring-inset focus:ring-indigo-500 sm:text-sm sm:leading-6 [&_*]:text-black"
+                  >
+                    <option>White</option>
+                    <option>Black</option>
+                    <option>Native American / Alaska Native</option>
+                    <option>Asian</option>
+                    <option>Native Hawaiian / Other Pacific Islander</option>
+                  </select>
+                </div>
+              </div>
 
               <fieldset className='sm:col-span-2'>
               <legend className="text-sm font-semibold leading-6 text-white">Current Policies</legend>

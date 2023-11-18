@@ -38,9 +38,17 @@ export async function calculate(formData) {
         evictions = 1000 + lookupState[state]
     }
 
-    const interventions = 'item1,item2,item3'
+    const interventions = 'item1,item2,item3,item2'
 
-    const queryString  = `interventions=${interventions}&evictions=${evictions}`
+    const baselineArray = [65, 74, 66, 64, 56, 67, 73, 80, 85, 100] // join into one string
+    const baselineData = baselineArray.join()
+
+    const interventionArray = [63, 72, 69, 65, 56, 60, 65, 62, 58, 64]
+    const interventionData = interventionArray.join()
+
+    const saved = 400
+
+    const queryString  = `interventions=${interventions}&evictions=${evictions}&baselineData=${baselineData}&interventionData=${interventionData}&saved=${saved}`
     
     redirect(`/results?${queryString}`)
 }
