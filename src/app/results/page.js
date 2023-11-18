@@ -3,6 +3,8 @@
 'use client'
  
 import { useSearchParams } from 'next/navigation'
+import { ExampleChart } from '../components/charts'
+
 
 export default function Page() {
     const searchParams = useSearchParams()
@@ -90,6 +92,9 @@ export default function Page() {
             <p>
                 Evictions: {evictions}
             </p>
+
+            <ExampleChart/>
+
 
         </div>
     </div>
