@@ -33,6 +33,7 @@ export default function Page() {
     );
 
     const evictions = searchParams.get('evictions')
+    const budget = searchParams.get('budget')
 
     const multiplierLow = 10500
     const multiplierHigh = 29100
@@ -110,7 +111,7 @@ export default function Page() {
             <h2 className='text-xl'>
                 <span className='font-semibold text-yellow-300'>${(evictions * (multiplierHigh - multiplierLow)).toLocaleString()}</span> saved for your city
             </h2>
-            <p className='text-gray-400'>based on a budgeted ${evictions} spent on interventions.</p>
+            <p className='text-gray-400'>based on a budgeted ${numberWithCommas(budget)} spent on interventions.</p>
           </div>
 
           <div className='w-full -mt-6'>

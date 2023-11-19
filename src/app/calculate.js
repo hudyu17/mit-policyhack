@@ -36,19 +36,19 @@ export async function calculate(formData) {
 
     var interventions = ''
 
-    if (!counsel) {
+    if (counsel) {
         interventions += 'counsel,'
     } 
 
-    if (!moratorium) {
+    if (moratorium) {
         interventions += 'moratorium,'
     }
 
-    if (!cure) {
+    if (cure) {
         interventions += 'cure,'
     }
 
-    const evictions = lookupState[state] * budget 
+    const evictions = (lookupState[state] + budget) / 10000
 
     // const interventions = 'item1,item2,item3'
 
@@ -58,7 +58,7 @@ export async function calculate(formData) {
     const interventionArray = [63, 72, 69, 65, 56, 60, 65, 62, 58, 64]
     const interventionData = interventionArray.join()
 
-    const queryString  = `interventions=${interventions}&evictions=${evictions}&baselineData=${baselineData}&interventionData=${interventionData}`
+    const queryString  = `budget=${budget}&interventions=${interventions}&evictions=${evictions}&baselineData=${baselineData}&interventionData=${interventionData}`
     
     redirect(`/results?${queryString}`)
 }
