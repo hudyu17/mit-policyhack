@@ -48,7 +48,7 @@ export async function calculate(formData) {
         interventions += 'cure,'
     }
 
-    const evictions = lookupState[state] * budget
+    const evictions = lookupState[state] * budget 
 
     // const interventions = 'item1,item2,item3'
 
