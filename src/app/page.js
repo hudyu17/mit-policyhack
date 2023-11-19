@@ -200,9 +200,9 @@ export default function Example() {
               </div>
 
               <fieldset className='sm:col-span-2'>
-              <legend className="text-sm font-semibold leading-6 text-white">Current Policies</legend>
+              <legend className="text-sm font-semibold leading-6 text-white">Specific Policies</legend>
               <p className="mt-1 text-sm leading-6 text-gray-400">
-                Select all eviction-related interventions currently implemented in your city.
+                Select all eviction-related interventions you would like to implement in your city.
               </p>
               <div className="mt-5 space-y-6">
                 <div className="relative flex gap-x-3">
